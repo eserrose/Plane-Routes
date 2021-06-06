@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron')
 const serve = require('electron-serve');
 
 serve({directory: __dirname + '/static'});
@@ -12,11 +12,14 @@ function createWindow () {
       nativeWindowOpen: true,
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
-      contextIsolation: false //this is set to true by default as of electron 12 so we must set this to use require inside the renderer
+      //below are set to false and true (respectively) by default as of electron 12 so we must change them to use require inside the renderer
+      enableRemoteModule: true,
+      contextIsolation: false 
     }
   })
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');
+  Menu.setApplicationMenu(null);
 }
 
 app.whenReady().then(createWindow)

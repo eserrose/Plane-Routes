@@ -1,11 +1,15 @@
 window.CESIUM_BASE_URL = './static/Cesium/';
 const Cesium = require('cesium');
+const path   = require('path');
+const {app}  = require('electron').remote
 
 const start = Cesium.JulianDate.fromDate(new Date(parseInt(1613893161)))
 const stop  = Cesium.JulianDate.fromDate(new Date(parseInt(1616956633)))
 
 let apikey;
-fetch('../../cesium.api').then(response => response.text()).then(text => {apikey = text; init()})
+//let apidir = path.join(app.getAppPath(), 'cesium.api')
+let apidir = '../../cesium.api';
+fetch(apidir).then(response => response.text()).then(text => apikey = text).finally( init )
 
 function init(){
     Cesium.Ion.defaultAccessToken = apikey;
@@ -23,7 +27,8 @@ function init(){
     
     setViewer(viewer);
 
-    $.getJSON( "./static/planes.json", function( data, status ) {
+    
+    $.getJSON( path.join(app.getAppPath(), 'src', 'static', 'planes.json'), function( data, status ) {
         let routes = getRoutes(data);
 
         for(let route of Object.keys(routes)){
@@ -68,7 +73,7 @@ function setViewer(viewer){
 }
 
 async function loadAirplane(viewer, positionProperty, color, start, stop){
-    const airplaneUri = await Cesium.IonResource.fromAssetId(478494);
+    const airplaneUri = apikey? await Cesium.IonResource.fromAssetId(478494) : null;
     const airplaneEntity = viewer.entities.add({
         availability: new Cesium.TimeIntervalCollection([ new Cesium.TimeInterval({ start: start, stop: stop }) ]),
         position: positionProperty,
