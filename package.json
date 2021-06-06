@@ -1,0 +1,31 @@
+{
+  "name": "plane-routes",
+  "version": "1.0.0",
+  "description": "Plane route visualization project using cesium and electron",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eserrose/Plane-Routes.git"
+  },
+  "keywords": [
+    "plane",
+    "air",
+    "traffic",
+    "route"
+  ],
+  "author": "E.Eser Gul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eserrose/Plane-Routes/issues"
+  },
+  "homepage": "https://github.com/eserrose/Plane-Routes#readme",
+  "dependencies": {
+    "cesium": "^1.82.1",
+    "electron": "^13.1.1",
+    "electron-packager": "^15.2.0"
+  }
+}

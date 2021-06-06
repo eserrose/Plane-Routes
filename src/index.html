@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url(../node_modules/cesium/Build/Cesium/Widgets/widgets.css);
+        html, body, #cesiumContainer {
+            height: 100%; margin: 0; padding: 0; overflow: hidden;
+        }
+    </style>
+
+    <script> if (typeof module === 'object') {window.module = module; module = undefined;} </script>  
+    <script src="utils.js"></script>
+    <script type="module" src="route.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <title>Plane Routes</title>
+</head>
+<body>
+    <div id="cesiumContainer"></div>
+</body>
+</html>
