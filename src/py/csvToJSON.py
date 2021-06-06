@@ -21,6 +21,8 @@ def CSV_to_JSON(files):
     json_file = open('../static/planes.json', 'w')
     json_file.write('[\n')
 
+    earliest_time = 99999999999;
+    latest_time = 0
     file_counter = 0
     for file in files:
         file_counter += 1
@@ -30,6 +32,10 @@ def CSV_to_JSON(files):
             words = line.split(',')
             i = 0
             json_file.write( '\n\t{\n\t\t"Timestamp":"' + words[i] + '",')
+            if(int(words[i]) < int(earliest_time)):
+                earliest_time = words[i]
+            if(int(words[i]) > int(latest_time)):
+                latest_time = words[i]
             i+=1
             json_file.write( '\n\t\t"UTC":"' + words[i] + '",')
             i+=1
@@ -51,5 +57,7 @@ def CSV_to_JSON(files):
     
     json_file.write('\n]')
     json_file.close()
+    print(earliest_time)
+    print(latest_time)
         
 CSV_to_JSON(read_files())
