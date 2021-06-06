@@ -1,4 +1,7 @@
 const {app, BrowserWindow} = require('electron')
+const serve = require('electron-serve');
+
+serve({directory: __dirname + '/static'});
 
 function createWindow () {
 

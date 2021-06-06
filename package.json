@@ -26,6 +26,7 @@
   "dependencies": {
     "cesium": "^1.82.1",
     "electron": "^13.1.1",
-    "electron-packager": "^15.2.0"
+    "electron-packager": "^15.2.0",
+    "electron-serve": "^1.1.0"
   }
 }
